@@ -24,4 +24,4 @@ jobs:
           command: |
             git config user.email "circleci@hreyeslo.github.io"
             git config user.name "Circleci"
-            ./node_modules/.bin/gh-pages --dist dist/$PROJECT_NAME --repo https://$GH_TOKEN@github.com/hreyeslo/ngx-dynamics.git
+            ./node_modules/.bin/gh-pages --dist dist/$PROJECT_NAME --repo https://$GH_TOKEN@github.com/hreyeslo/ngx-dynamics.git --message "[ci skip] Automatic commit by cicleci"
