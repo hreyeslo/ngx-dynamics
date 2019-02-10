@@ -21,4 +21,4 @@ jobs:
           command: yarn build
       - run:
           name: Install GitHub Pages CLI
-          command: yarn add -g gh-pages@2.0.1
+          command: npm install -g gh-pages
