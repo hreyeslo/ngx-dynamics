@@ -7,7 +7,7 @@
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
-      "prefix": "app",
+      "prefix": "ngx-dynamics",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
@@ -128,6 +128,41 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "router": {
+      "root": "libraries/router",
+      "sourceRoot": "libraries/router/src",
+      "projectType": "library",
+      "prefix": "ngx-dynamics",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libraries/router/tsconfig.lib.json",
+            "project": "libraries/router/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libraries/router/src/test.ts",
+            "tsConfig": "libraries/router/tsconfig.spec.json",
+            "karmaConfig": "libraries/router/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libraries/router/tsconfig.lib.json",
+              "libraries/router/tsconfig.spec.json"
+            ],
             "exclude": [
               "**/node_modules/**"
             ]

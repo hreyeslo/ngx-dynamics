@@ -1,0 +1,22 @@
+{
+  "name": "ngx-dynamics/router",
+  "description": "",
+  "version": "0.0.1",
+  "autor": "Héctor Reyes López",
+  "license": "ISC",
+  "url" : "https://github.com/hreyeslo",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/hreyeslo/ngx-dynamics.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hreyeslo/ngx-dynamics/issues"
+  },
+  "homepage": "https://github.com/hreyeslo/ngx-dynamics/tree/master/libraries/router",
+  "keywords": [],
+  "private": false,
+  "peerDependencies": {
+    "@angular/common": "^7.2.0",
+    "@angular/core": "^7.2.0"
+  }
+}
