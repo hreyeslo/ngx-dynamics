@@ -18,7 +18,9 @@ jobs:
             - ./node_modules
       - run:
           name: Build app
-          command: yarn build
+          command: ng build --base-href "/$REPO_NAME/"
       - run:
-          name: Install GitHub Pages CLI
-          command: npm install -g gh-pages
+          name: Deployment of the App
+          command: |
+            git config user.name "Circleci"
+            ./node_modules/.bin/angular-cli-ghpages --dir=dist/$REPO_NAME --message="[ci skip] New version of the library is deployed" --repo=https://$GH_TOKEN@github.com/hreyeslo/ngx-dynamics.git
