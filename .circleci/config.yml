@@ -20,7 +20,5 @@ jobs:
           name: Build app
           command: yarn build
       - run:
-          name: Deployment of the App
-          command: |
-            npm install -g --silent gh-pages@2.0.1
-            git config user.name "ci-build"
+          name: Install GitHub Pages CLI
+          command: yarn add -g gh-pages@2.0.1
