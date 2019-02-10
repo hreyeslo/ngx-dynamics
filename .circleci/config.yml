@@ -18,7 +18,7 @@ jobs:
             - ./node_modules
       - run:
           name: Build app
-          command: ng build --base-href "/$REPO_NAME/"
+          command: ./node_modules/.bin/ng build --base-href "/$REPO_NAME/"
       - run:
           name: Deployment of the App
           command: |
