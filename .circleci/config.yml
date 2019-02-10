@@ -2,18 +2,14 @@ version: 2
 jobs:
   build:
     working_directory: ~/ngx-dynamics
-    parallelism: 4
     docker:
       - image: circleci/node:10.15.1-jessie-browsers-legacy
-    filters:
-      branches:
-        only: master
     steps:
       - checkout
       - restore_cache:
           key: dependency-cache-{{ checksum "yarn.lock" }}
       - run:
-          name: Install Dependencies
+          name: Install dependencies
           command: yarn install
       - save_cache:
           key: dependency-cache-{{ checksum "yarn.lock" }}
@@ -21,5 +17,8 @@ jobs:
             - ~/.cache/yarn
             - ./node_modules
       - run:
-          name: Build App
+          name: Build app
           command: yarn build
+      - run:
+          name: Deployment of the App
+          command: npx ngh --dir=dist/ngx-dynamics --repo=https://GH_TOKEN@github.com/hreyeslo/ngx-dynamics.git
