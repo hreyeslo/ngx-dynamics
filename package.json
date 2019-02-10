@@ -8,7 +8,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "deploy": "npx ngh --dir=dist/ngx-dynamics --message=\"New version of the library is deployed [ci skip]\" --repo=https://25a8fd6e5336c75666bf687ee50ca4d894edef37@github.com/hreyeslo/ngx-dynamics.git"
   },
   "private": true,
   "dependencies": {
