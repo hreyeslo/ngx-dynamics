@@ -21,4 +21,7 @@ jobs:
           command: ./node_modules/.bin/ng build --base-href "/$PROJECT_NAME/"
       - run:
           name: Deploy App
-          command: ./node_modules/.bin/gh-pages --dist dist/$PROJECT_NAME
+          command: |
+            git config user.email "circleci@hreyeslo.github.io"
+            git config user.name "Circleci"
+            ./node_modules/.bin/gh-pages --dist dist/$PROJECT_NAME
