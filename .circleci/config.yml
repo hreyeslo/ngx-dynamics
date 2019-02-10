@@ -21,4 +21,6 @@ jobs:
           command: yarn build
       - run:
           name: Deployment of the App
-          command: yarn deploy
+          command: |
+            git config user.name "Circleci"
+            gh-pages --dist dist/ngx-dynamics --message "New version of the library is deployed [ci skip]" --repo https://$GH_TOKEN@github.com/hreyeslo/ngx-dynamics.git
