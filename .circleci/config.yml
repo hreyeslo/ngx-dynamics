@@ -23,5 +23,4 @@ jobs:
           name: Deployment of the App
           command: |
             npm install -g --silent gh-pages@2.0.1
-            git config user.name "Circleci"
-            gh-pages --dist dist/ngx-dynamics --message "New version of the library is deployed [ci skip]" --repo https://$GH_TOKEN@github.com/hreyeslo/ngx-dynamics.git
+            git config user.name "ci-build"
