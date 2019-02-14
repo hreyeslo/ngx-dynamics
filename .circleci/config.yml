@@ -4,6 +4,9 @@ jobs:
     working_directory: ~/ngx-dynamics
     docker:
       - image: circleci/node:10.15.1-jessie-browsers-legacy
+    branches:
+      only:
+        - master
     steps:
       - checkout
       - restore_cache:
