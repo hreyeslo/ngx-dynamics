@@ -1,0 +1,27 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/ngx-dynamics
+    docker:
+      - image: circleci/node:10.15.1-jessie-browsers-legacy
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install Dependencies
+          command: yarn install
+      - save_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+            - ./node_modules
+      - run:
+          name: Build App
+          command: ./node_modules/.bin/ng build --base-href "/$PROJECT_NAME/"
+      - run:
+          name: Deploy App
+          command: |
+            git config user.email "circleci@hreyeslo.github.io"
+            git config user.name "Circleci"
+            ./node_modules/.bin/gh-pages --dist dist/$PROJECT_NAME --repo https://$GH_TOKEN@github.com/hreyeslo/ngx-dynamics.git --message "[ci skip] Automatic commit by cicleci"
