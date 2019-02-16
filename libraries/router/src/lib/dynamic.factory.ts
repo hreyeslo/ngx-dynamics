@@ -14,7 +14,7 @@ export const CONFIG = new InjectionToken<string>('CONFIG');
  * @param routerService RouterService reference
  * @param options The router config options received from the app
  */
-export const DynamicRouterFactory = (
+export const DynamicRouterFactory = <T>(
     routerService: RouterService,
-    options: IRouterConfig
+    options: IRouterConfig<T>
 ) => () => routerService.init(options);

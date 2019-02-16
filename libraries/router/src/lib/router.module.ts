@@ -10,7 +10,7 @@ import { IRouterConfig } from './router.model';
   providers: [RouterService]
 })
 export class RouterModule {
-  static forRoot(config: IRouterConfig): ModuleWithProviders {
+  static forRoot<T>(config: IRouterConfig<T>): ModuleWithProviders {
     return {
       ngModule: RouterModule,
       providers: [
