@@ -11,20 +11,21 @@ import { IRouterConfig } from './router.model';
 })
 export class RouterModule {
   static forRoot<T>(config: IRouterConfig<T>): ModuleWithProviders {
+    const providers = [
+      {
+        provide: CONFIG,
+        useValue: config
+      },
+      {
+        provide: APP_INITIALIZER,
+        useFactory: DynamicRouterFactory,
+        deps: [RouterService, CONFIG],
+        multi: true
+      }
+    ];
     return {
       ngModule: RouterModule,
-      providers: [
-        {
-          provide: CONFIG,
-          useValue: config
-        },
-        {
-          provide: APP_INITIALIZER,
-          useFactory: DynamicRouterFactory,
-          deps: [RouterService, CONFIG],
-          multi: true
-        }
-      ]
+      providers
     };
   }
 }

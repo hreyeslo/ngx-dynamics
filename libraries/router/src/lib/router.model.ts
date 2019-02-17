@@ -10,7 +10,7 @@ export interface IRouterConfig<T> {
         method: 'GET' | 'POST';
         options?: HttpRequestOptions
     };
-    callback: (httpResponse: T) => Routes;
+    callback?: (httpResponse: T) => Routes;
 }
 
 export class HttpRequestOptions {

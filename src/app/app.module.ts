@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RouterModule } from 'libraries/router/src/public_api';
 
-const callback = (response: any) => {
+const callback = (response: any): Routes => {
   console.log(response);
   return [
     {
@@ -27,8 +27,7 @@ const callback = (response: any) => {
       httpRequest: {
         url: '/assets/mocks/router.json',
         method: 'GET'
-      },
-      callback
+      }
     })
   ],
   providers: [],

@@ -1,12 +1,15 @@
 import { Injectable, Injector } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { Routes, Router } from '@angular/router';
 
 import { IRouterConfig } from './router.model';
 import {
   get as _get,
-  omit as _omit
+  omit as _omit,
+  flattenDeep as _flattenDeep,
+  trimStart as _trimStart,
+  merge as _merge
 } from 'lodash';
-import { Routes } from '@angular/router';
 
 /**
  * This class contain all of the methods that setting dynamically the routerService of the app
@@ -14,6 +17,9 @@ import { Routes } from '@angular/router';
 @Injectable()
 export class RouterService {
 
+  /**
+   * This is the current global config, provided by the app
+   */
   private config: IRouterConfig<any>;
 
   constructor(
@@ -38,14 +44,11 @@ export class RouterService {
       if (this.config.httpRequest.method === 'GET' && _get(this.config.httpRequest, ['options', 'body'])) {
         this.config.httpRequest.options = _omit(this.config.httpRequest.options, ['body']);
       }
-
       this.httpClient[this.config.httpRequest.method.toLowerCase()](this.config.httpRequest.url, this.config.httpRequest.options)
         .toPromise()
-        .then((response: T) => {
-          const routes: Routes = this.config.callback(response);
-
-          console.log(routes);
-
+        .then((response: T | Routes) => {
+          const routes: Routes = _get(this.config, ['callback']) ? this.config.callback(response as T) : response as Routes;
+          this.injector.get(Router).resetConfig(this.makeFlattenRoutesTree(routes));
           resolve(true);
         })
         .catch((error: Error) => {
@@ -53,6 +56,29 @@ export class RouterService {
           resolve(false);
         });
     });
+  }
+
+  /**
+   * This method makes a flatten structure from mapped routes and save it own hierarchy
+   * @param routes mapped routes
+   * @param parentPath The path of his parent
+   */
+  private makeFlattenRoutesTree(routes: Routes, parentPath: string = ''): Routes {
+    const flattenRoutes: Routes = [];
+    routes.forEach(route => {
+      if (route.path && (route.loadChildren || route.component || (route.redirectTo && route.pathMatch))) {
+        let childRoutes: Routes = [];
+        route.path = _trimStart(`${parentPath}/${_trimStart(route.path, '/')}`, '/');
+        route.data = _merge({
+          hierarchy: route.path.split('/').filter(path => path !== '' && path !== null && path !== undefined)
+        }, route.data || {});
+        if (_get(route, ['children'])) {
+          childRoutes = this.makeFlattenRoutesTree(route.children, route.path);
+        }
+        flattenRoutes.push([_omit(route, ['children'])].concat(childRoutes) as any);
+      }
+    });
+    return _flattenDeep(flattenRoutes);
   }
 
 }

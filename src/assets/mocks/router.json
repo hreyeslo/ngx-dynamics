@@ -1,3 +1,31 @@
-{
-    "test": "a"
-}
+[
+    {
+        "path": "facturas",
+        "loadChildren": "./module#NameModule",
+        "data": {}
+    },
+    {
+        "path": "informes",
+        "loadChildren": "./module#NameModule",
+        "data": {},
+        "children": [
+            {
+                "path": "detalle",
+                "loadChildren": "./module#test",
+                "data": {}
+            },
+            {
+                "path": "shearch/:id",
+                "loadChildren": "./module#test",
+                "data": {},
+                "children": [
+                    {
+                        "path": "advanced",
+                        "loadChildren": "./module#test2",
+                        "data": {}
+                    }
+                ]
+            }
+        ]
+    }
+]
