@@ -4,33 +4,36 @@ import { Routes, Route } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RouterModule } from 'libraries/router/src/public_api';
+import { NgxDynamicsModule } from 'libraries/ngx-dynamics/src/public_api';
 
 const callback = (response: any): Routes => {
-  console.log(response);
-  return [
-    {
-      path: 'test',
-      loadChildren: 'test#tst'
-    }
-  ];
+	console.log(response);
+	return [
+		{
+			path: 'test',
+			loadChildren: 'test#tst'
+		}
+	];
 };
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    RouterModule.forRoot<any>({
-      httpRequest: {
-        url: '/assets/mocks/router.json',
-        method: 'GET'
-      }
-    })
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+	declarations: [
+		AppComponent
+	],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		NgxDynamicsModule.forRoot({
+			appConfigSource: {
+				url: '/assets/mocks/router.json',
+				method: 'GET'
+			},
+			enableServices: {
+				router: true
+			}
+		})
+	],
+	providers: [],
+	bootstrap: [AppComponent]
 })
 export class AppModule { }

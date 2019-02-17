@@ -4,13 +4,13 @@
     "directive-selector": [
       true,
       "attribute",
-      "ngx-dynamics",
+      "lib",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "ngx-dynamics",
+      "lib",
       "kebab-case"
     ]
   }

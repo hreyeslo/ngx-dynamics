@@ -19,11 +19,11 @@
       "dom"
     ],
     "paths": {
-      "router": [
-        "dist/router"
+      "ngx-dynamics": [
+        "dist/ngx-dynamics"
       ],
-      "router/*": [
-        "dist/router/*"
+      "ngx-dynamics/*": [
+        "dist/ngx-dynamics/*"
       ]
     }
   }

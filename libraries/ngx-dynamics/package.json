@@ -1,18 +1,17 @@
 {
-  "name": "@ngx-dynamics/router",
-  "description": "",
+  "name": "ngx-dynamics",
   "version": "7.0.0",
-  "autor": "Héctor Reyes López",
+  "author": "Héctor Reyes López",
   "license": "ISC",
-  "url" : "https://github.com/hreyeslo",
+  "url": "https://github.com/hreyeslo",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/hreyeslo/ngx-dynamics.git"
+    "type": "git",
+    "url": "https://github.com/hreyeslo/ngx-dynamics.git"
   },
   "bugs": {
     "url": "https://github.com/hreyeslo/ngx-dynamics/issues"
   },
-  "homepage": "https://github.com/hreyeslo/ngx-dynamics/tree/master/libraries/router",
+  "homepage": "https://github.com/hreyeslo/ngx-dynamics/tree/master/libraries/ngx-dynamics",
   "keywords": [],
   "private": false,
   "peerDependencies": {

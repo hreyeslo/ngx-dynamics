@@ -3,11 +3,11 @@
   "version": 1,
   "newProjectRoot": "libraries",
   "projects": {
-    "ngx-dynamics": {
+    "ngx-dynamics-spa": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
-      "prefix": "ngx-dynamics",
+      "prefix": "ngx-dynamics-spa",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ngx-dynamics",
+            "outputPath": "dist/ngx-dynamics-spa",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -62,18 +62,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ngx-dynamics:build"
+            "browserTarget": "ngx-dynamics-spa:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ngx-dynamics:build:production"
+              "browserTarget": "ngx-dynamics-spa:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ngx-dynamics:build"
+            "browserTarget": "ngx-dynamics-spa:build"
           }
         },
         "test": {
@@ -107,7 +107,7 @@
         }
       }
     },
-    "ngx-dynamics-e2e": {
+    "ngx-dynamics-spa-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -116,11 +116,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ngx-dynamics:serve"
+            "devServerTarget": "ngx-dynamics-spa:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ngx-dynamics:serve:production"
+              "devServerTarget": "ngx-dynamics-spa:serve:production"
             }
           }
         },
@@ -135,33 +135,33 @@
         }
       }
     },
-    "router": {
-      "root": "libraries/router",
-      "sourceRoot": "libraries/router/src",
+    "ngx-dynamics": {
+      "root": "libraries/ngx-dynamics",
+      "sourceRoot": "libraries/ngx-dynamics/src",
       "projectType": "library",
-      "prefix": "ngx-dynamics",
+      "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "libraries/router/tsconfig.lib.json",
-            "project": "libraries/router/ng-package.json"
+            "tsConfig": "libraries/ngx-dynamics/tsconfig.lib.json",
+            "project": "libraries/ngx-dynamics/ng-package.json"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libraries/router/src/test.ts",
-            "tsConfig": "libraries/router/tsconfig.spec.json",
-            "karmaConfig": "libraries/router/karma.conf.js"
+            "main": "libraries/ngx-dynamics/src/test.ts",
+            "tsConfig": "libraries/ngx-dynamics/tsconfig.spec.json",
+            "karmaConfig": "libraries/ngx-dynamics/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libraries/router/tsconfig.lib.json",
-              "libraries/router/tsconfig.spec.json"
+              "libraries/ngx-dynamics/tsconfig.lib.json",
+              "libraries/ngx-dynamics/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -171,5 +171,5 @@
       }
     }
   },
-  "defaultProject": "ngx-dynamics"
+  "defaultProject": "ngx-dynamics-spa"
 }
